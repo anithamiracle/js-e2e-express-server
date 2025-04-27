@@ -4,7 +4,10 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- main
+  branches:
+    include:
+      - main
+
 
 pool:
   vmImage: ubuntu-latest
@@ -21,7 +24,7 @@ steps:
   displayName: 'npm install and build'
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: a7642e08-c3d6-4a21-b196-50ecbd11
+    azureSubscription: 'azure'
     appName: 'sample-webapp'
     package: '$(System.DefaultWorkingDirectory)/**/build'
   displayName: 'Deploy to Azure web app'  
